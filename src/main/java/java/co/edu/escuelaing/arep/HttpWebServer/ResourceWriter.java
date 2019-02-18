@@ -31,6 +31,16 @@ public class ResourceWriter {
 
             pngRecurso(recurso);
         }
+        else if(recurso.toLowerCase().contains("/indice")){
+            System.out.println("loco");
+            index();
+        
+        }
+ 
+        else{
+        
+            errorTipo();
+        }
 
     }
     
@@ -139,5 +149,34 @@ public class ResourceWriter {
             System.err.println("Error en la lectura de el archivo");
         }
     }    
+    private void index(){
+            try {
+            PrintWriter out;
+            out = new PrintWriter(this.clientSocket.getOutputStream(), true);
+            String outputLine = "HTTP/1.1 200 Index\r\n"
+                    + "Content-Type: text/html\r\n"
+                    + "\r\n"
+                    + "<!DOCTYPE html>"
+                    + "<html>"
+                    + "<head>"
+                    + "<meta charset=\"UTF-8\">"
+                    + "<title>El listado de archivos que puede encontrar</title>\n"
+                    + "</head>"
+                    + "<body>"
+                    + "<h1>Las siguientes recursos e imagenes puede encontrar</h1>"
+                    
+                    
+                    
+                    + "</body>"
+                    + "</html>";
+
+            out.println(outputLine);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+    }
+
     
 }
