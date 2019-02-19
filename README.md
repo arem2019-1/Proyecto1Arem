@@ -3,9 +3,9 @@
 Cesar Eduardo Lanos Camacho
 ## Link Funcional Aplicacion Web en Heroku
 
-[con solo HTML]()
+[con solo HTML](https://proyectoarem1.herokuapp.com/index.html)
 
-[con solo .png]()
+[con solo .png](https://proyectoarem1.herokuapp.com/bug.png)
 
 
 ## EMPEZAR
