@@ -5,6 +5,7 @@
  */
 package co.edu.escuelaing.arep.HttpWebServer;
 
+import co.edu.escuelaing.arep.reflexion.Reflexion;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -19,10 +20,11 @@ import java.net.Socket;
  * @author 2098325
  */
 public class ResourceWriter {
-
+    private final Reflexion fin;
     private final Socket clientSocket;
 
     public ResourceWriter(String recurso, Socket clientSocket) {
+        this.fin=new Reflexion();
         this.clientSocket = clientSocket;
         if (recurso.toLowerCase().contains(".html")) {
 
@@ -30,26 +32,31 @@ public class ResourceWriter {
         } else if (recurso.toLowerCase().contains(".png")) {
 
             pngRecurso(recurso);
-        }
-        else if(recurso.toLowerCase().contains("/indice")){
-            System.out.println("loco");
-            index();
-        
-        }
- 
-        else{
-        
+        }  else {
+
             errorTipo();
         }
-
     }
     
-    private void errorTipo(){
     
-        try{
+    public ResourceWriter(Integer dato, String ruta,String recurso,Socket clientSocket) throws IOException {
+        this.fin=new Reflexion();
+        this.clientSocket = clientSocket;
+        if (recurso.toLowerCase().contains("/fram")) {
+            framworkPojo(dato,ruta);
+
+        } else {
+
+            errorTipo();
+        }
+    }
+
+    private void errorTipo() {
+
+        try {
             PrintWriter out;
-            out=new PrintWriter(this.clientSocket.getOutputStream(),true);
-            String outputLine="HTTP/1.1 Erro Type Not Implemented\r\n"
+            out = new PrintWriter(this.clientSocket.getOutputStream(), true);
+            String outputLine = "HTTP/1.1 Erro Type Not Implemented\r\n"
                     + "Content-Type: text/html\r\n"
                     + "\r\n"
                     + "<!DOCTYPE html>"
@@ -65,15 +72,15 @@ public class ResourceWriter {
                     + "</html>";
             out.print(outputLine);
             out.close();
-        
-        }catch (IOException e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    
+
     }
 
-    private void nFound404(){
-            try {
+    private void nFound404() {
+        try {
             PrintWriter out;
             out = new PrintWriter(this.clientSocket.getOutputStream(), true);
             String outputLine = "HTTP/1.1 404 Not Found\r\n"
@@ -95,15 +102,13 @@ public class ResourceWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    
+
     }
-    
-    
-    
- private void pngRecurso(String resource) {
+
+    private void pngRecurso(String resource) {
 
         try {
-            File graphicResource= new File("src/main/resources" +resource);
+            File graphicResource = new File("src/main/resources" + resource);
             FileInputStream inputImage = new FileInputStream(graphicResource);
             byte[] bytes = new byte[(int) graphicResource.length()];
             inputImage.read(bytes);
@@ -116,14 +121,16 @@ public class ResourceWriter {
             binaryOut.writeBytes("\r\n\r\n");
             binaryOut.write(bytes);
             binaryOut.close();
-        } catch (IOException ex){
+        } catch (IOException ex) {
             nFound404();
             System.err.println("Error en la lectura de el archivo");
         }
 
     }
+
     /**
      * Se encarga de manejar el html almacenado en resources
+     *
      * @param resource
      */
     private void htmlResource(String resource) {
@@ -140,33 +147,35 @@ public class ResourceWriter {
             PrintWriter out = new PrintWriter(
                     this.clientSocket.getOutputStream(), true);
 
-
             out.println(outputLine.toString());
             out.close();
 
-        }catch (IOException ex){
+        } catch (IOException ex) {
             nFound404();
             System.err.println("Error en la lectura de el archivo");
         }
-    }    
-    private void index(){
-            try {
+    }
+
+    private void framworkPojo(Integer dato, String ruta) throws IOException {
+        int re=fin.tratar(dato, ruta);
+        try {
+            
+            String ffin=Integer.toString(re);
+            
+            
             PrintWriter out;
             out = new PrintWriter(this.clientSocket.getOutputStream(), true);
-            String outputLine = "HTTP/1.1 200 Index\r\n"
+            String outputLine = "HTTP/1.1 202 Rsultado de usar el framework\r\n"
                     + "Content-Type: text/html\r\n"
                     + "\r\n"
                     + "<!DOCTYPE html>"
                     + "<html>"
                     + "<head>"
                     + "<meta charset=\"UTF-8\">"
-                    + "<title>El listado de archivos que puede encontrar</title>\n"
+                    + "<title>El resultaod es </title>\n"+ffin
                     + "</head>"
                     + "<body>"
-                    + "<h1>Las siguientes recursos e imagenes puede encontrar</h1>"
-                    
-                    
-                    
+                    + "<h1>Este fue el resultado de usar alguna de las clases del framework</h1>"
                     + "</body>"
                     + "</html>";
 
@@ -175,8 +184,7 @@ public class ResourceWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    
+
     }
 
-    
 }
