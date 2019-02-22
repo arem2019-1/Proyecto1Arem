@@ -24,7 +24,7 @@ public class HttpServer {
                     ServerSocket serverSocket= co.edu.escuelaing.arep.Sockets.ServerSock.getNewServerSocket();
                     Socket  clientSoc=ClientSock.getNewClientSock(serverSocket)){
                 InputRead go =new InputRead(clientSoc);
-                ResourceWriter rw = new ResourceWriter(go.getRecurso(),clientSoc);
+                ResourceWriter rw = new ResourceWriter(go.getRecurso(),clientSoc,go.getDirrecion(), go.getDato(),go.Operacion());
                 go.closeIn();
             
             }       

@@ -30,16 +30,25 @@ public class Reflexion {
 
             //Class c = Class.forName("com.mycompany.reflexiontest.Calculadora");
             Class c = Class.class;
-
-            File f = new File("target/classes/com/mycompany/reflexiontest");
+            //target/classes/co/edu/escuelaing/arep/reflexion/
+            File f = new File("target/classes/co/edu/escuelaing/arep/reflexion");
+            System.out.println("lelega aqui?"+f.exists());
             if (f.exists()) {
                 File[] ficheros = f.listFiles();
+
+                
                 for (File re : ficheros) {
+                    System.out.println("miremos lol : "+re.getAbsolutePath());
                     String temp1 = re.toPath().toString();
+
                     String temp2 = temp1.replace(".class", "");
-                    String temp3 = temp2.replace("target\\classes\\", "");
+
+                    String temp3 = temp2.replace("target/classes/", "");
+                    System.out.println("como empezo temp3 "+temp3);
                     String temp4 = temp3.replace("\\", ".");
+                    System.out.println("lelega aqui?3 : "+temp4);
                     c = Class.forName(temp4);
+                    System.out.println("lelega aqui?2");
                     for (Method m : c.getMethods()) {
                         System.out.println("popo");
                         if (m.isAnnotationPresent(Web.class)) {
@@ -61,7 +70,7 @@ public class Reflexion {
             }
             Class q = Class.class;
             String temp="";
-            if (ruta.equals("cuadrado")) {
+            if (ruta.toString().equals("cuadrado")) {
                 q = (Class) dicWeb.get("co.edu.escuelaing.arep.reflexion.Calculadora");
                 temp="cuadrado";
             } else if (ruta.equals("suma")) {

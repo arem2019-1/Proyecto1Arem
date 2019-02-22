@@ -23,34 +23,28 @@ public class ResourceWriter {
     private final Reflexion fin;
     private final Socket clientSocket;
 
-    public ResourceWriter(String recurso, Socket clientSocket) {
+    public ResourceWriter(String recurso, Socket clientSocket,String dirrecion, Integer dato,String operacion) throws IOException {
         this.fin=new Reflexion();
         this.clientSocket = clientSocket;
+        //System.out.println("miremos socket :"+clientSocket);
+        //System.out.println("miremos el recurso"+recurso);
         if (recurso.toLowerCase().contains(".html")) {
 
             htmlResource(recurso);
-        } else if (recurso.toLowerCase().contains(".png")) {
+        }else if (recurso.toLowerCase().contains(".png")) {
 
             pngRecurso(recurso);
+        }  else if (recurso.toLowerCase().contains("/fram")) {
+            System.out.println("hola putos");
+            framworkPojo(dato, operacion);
+            
+
         }  else {
 
             errorTipo();
         }
     }
     
-    
-    public ResourceWriter(Integer dato, String ruta,String recurso,Socket clientSocket) throws IOException {
-        this.fin=new Reflexion();
-        this.clientSocket = clientSocket;
-        if (recurso.toLowerCase().contains("/fram")) {
-            framworkPojo(dato,ruta);
-
-        } else {
-
-            errorTipo();
-        }
-    }
-
     private void errorTipo() {
 
         try {
