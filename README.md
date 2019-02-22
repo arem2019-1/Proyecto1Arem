@@ -7,6 +7,8 @@ Cesar Eduardo Lanos Camacho
 
 [con solo .png](https://proyectoarem1.herokuapp.com/bug.png)
 
+[con solo pojo (Suma)](https://proyectoarem1.herokuapp.com/fram/suma/23)
+[con solo pojo (Cuadrado)](https://proyectoarem1.herokuapp.com/fram/cuadrado/23)
 
 ## EMPEZAR
 
@@ -53,8 +55,11 @@ http://localhost:4567/index.html
 http://localhost:4567/bug.png
   
 ```
-
-
+```
+http://localhost:4567/fram/cuadrado/90
+```
+```
+https://proyectoarem1.herokuapp.com/fram/suma/23
 
 ## Licencia
 
