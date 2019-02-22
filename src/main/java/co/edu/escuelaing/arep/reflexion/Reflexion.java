@@ -27,38 +27,21 @@ public class Reflexion {
         Hashtable<String, Object> dicWeb = new Hashtable<String, Object>();
         int resp=0;
         try {
-
-            //Class c = Class.forName("com.mycompany.reflexiontest.Calculadora");
-            Class c = Class.class;
-            //target/classes/co/edu/escuelaing/arep/reflexion/
-            File f = new File("target/classes/co/edu/escuelaing/arep/reflexion");
-            System.out.println("lelega aqui?"+f.exists());
+            Class c = Class.class;//Class c = Class.forName("com.mycompany.reflexiontest.Calculadora");
+            File f = new File("target/classes/co/edu/escuelaing/arep/reflexion");//target/classes/co/edu/escuelaing/arep/reflexion/
             if (f.exists()) {
                 File[] ficheros = f.listFiles();
-
-                
                 for (File re : ficheros) {
-                    System.out.println("miremos lol : "+re.getAbsolutePath());
                     String temp1 = re.toPath().toString();
-
                     String temp2 = temp1.replace(".class", "");
-
                     String temp3 = temp2.replace("target/classes/", "");
-                    System.out.println("como empezo temp3 "+temp3);
-                    String temp4 = temp3.replace("\\", ".");
-                    System.out.println("lelega aqui?3 : "+temp4);
+                    String temp4 = temp3.replace("/", ".");
                     c = Class.forName(temp4);
-                    System.out.println("lelega aqui?2");
                     for (Method m : c.getMethods()) {
-                        System.out.println("popo");
                         if (m.isAnnotationPresent(Web.class)) {
                             dicWeb.put(temp4, c);
-                            System.out.println("si tiene anota web " + m.getName());
                             try {
-
-                                System.out.println("lolol");
                                 System.out.println("Miremos resultado . " + m.invoke(null, dato));
-
                             } catch (Throwable ex) {
                                 System.out.println("Fallo por puto");
                             }
@@ -75,15 +58,14 @@ public class Reflexion {
                 temp="cuadrado";
             } else if (ruta.equals("suma")) {
                 q = (Class) dicWeb.get("co.edu.escuelaing.arep.reflexion.Suma");
-                temp="suma";
+                temp="su";
             }
-
             System.out.println(q.toGenericString());
             Method[] ml = q.getDeclaredMethods();
             for (Method m : ml) {
                 System.out.println(m);
             }
-            Method m = c.getDeclaredMethod(temp, int.class);
+            Method m = q.getDeclaredMethod(temp, int.class);
             System.out.println(m);
             System.out.println(m.invoke(null, dato));
             resp=(Integer)m.invoke(null, dato);

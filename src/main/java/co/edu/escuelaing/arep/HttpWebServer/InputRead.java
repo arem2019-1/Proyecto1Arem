@@ -35,34 +35,21 @@ public class InputRead {
                 System.out.println("Solicitaron:" + recurso);
             }
             System.out.println("RecibÃ­: " + inputLine);
-            String tmp=inputLine.toString();
-            //System.out.println("lololola : "+tmp);
+            String tmp=inputLine.toString();//System.out.println("lololola : "+tmp);
                     String tempp1="";
-                    
-            if(tmp.contains("/fram")){
-                    //System.out.println("miremos 111: "+recurso); 
+            if(tmp.contains("/fram")){//System.out.println("miremos 111: "+recurso); 
                     if(recurso.contains("/fram/cuadrado")){
-                      tempp1=recurso.replace("/fram/cuadrado/", "");  
-                        //System.out.println("miremos dato : "+tempp1);                    
-                    
+                      tempp1=recurso.replace("/fram/cuadrado/", ""); //System.out.println("miremos dato : "+tempp1);                    
                     }else if(recurso.contains("/fram/suma")){
-                       tempp1=recurso.replace("/fram/suma/", "");
-                        //System.out.println("miremos dato : "+tempp1);
-                    }//REcuperamos el numero o dato
-                    //AHora recuperaremos la operacion
-                    String temp22=recurso.replace("/fram/","");
-                    //System.out.println("miremos que es : "+temp22);
-                    //AHora separaremos la operacion
-                    String ui="/"+tempp1.toString();
-                    //System.out.println("miremos si "+ui);
+                       tempp1=recurso.replace("/fram/suma/", "");//System.out.println("miremos dato : "+tempp1);
+                    }//REcuperamos el numero o dato//AHora recuperaremos la operacion
+                    String temp22=recurso.replace("/fram/","");//AHora separaremos la operacion
+                    String ui="/"+tempp1.toString();//System.out.println("miremos si "+ui);
                     String temp33=temp22.replace(ui,"");
                     operacion=temp33.replace("/"+temp33,"");
-                    //System.out.println("miremos operacion : "+operacion);
                     if(tempp1!=""){
                         dato=Integer.parseInt(tempp1);
-                    }
-                    
-                    //System.out.println("MIrar el numero : "+dato);
+                    }//System.out.println("MIrar el numero : "+dato);
             }   
         }
     }
@@ -76,11 +63,9 @@ public class InputRead {
     public int getDato(){
         return dato;
     }
-    
     public String getRecurso() {
         return recurso;
     }
-
     public void closeIn() throws IOException {
         this.in.close();
     }

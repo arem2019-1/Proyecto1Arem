@@ -10,8 +10,10 @@ package co.edu.escuelaing.arep.reflexion;
  * @author 2098325
  */
 public class Suma {
-        @Web("/val") public static int suma(int val){
-    
-        return val+val;
+
+    @Web("/al")
+    public static int su(int al) {
+        int r=al+al;
+        return r;
     }
 }

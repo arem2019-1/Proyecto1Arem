@@ -36,6 +36,7 @@ public class ResourceWriter {
             pngRecurso(recurso);
         }  else if (recurso.toLowerCase().contains("/fram")) {
             System.out.println("hola putos");
+            System.out.println("EL DATO ES : "+dato+"operacion : "+operacion);
             framworkPojo(dato, operacion);
             
 
@@ -166,10 +167,10 @@ public class ResourceWriter {
                     + "<html>"
                     + "<head>"
                     + "<meta charset=\"UTF-8\">"
-                    + "<title>El resultaod es </title>\n"+ffin
+                    + "<title>El resultaod es </title>\n"
                     + "</head>"
                     + "<body>"
-                    + "<h1>Este fue el resultado de usar alguna de las clases del framework</h1>"
+                    + "<h1>Este fue el resultado de usar alguna de las clases del framework</h1>"+ffin
                     + "</body>"
                     + "</html>";
 
