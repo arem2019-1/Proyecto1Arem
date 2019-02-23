@@ -53,19 +53,33 @@ public class InputRead {
             }   
         }
     }
-
+    /**
+     * @return dirrecion Devuelve la dirrecion a donde se dirigue el usuario
+     */
     public String getDirrecion(){
         return dirreccion;
     }
+    
+    /**
+     * @return operacion Devuelve la operacion a que se realizara.
+     */
     public String Operacion(){
         return operacion;
     }
+    /**
+     * @return dato  Devuelve el valor para poder realizar el calculo.
+     */
+
     public int getDato(){
         return dato;
     }
+    /**
+     * @return dirrecion Devuelve el recurso para poder analizar el mensaje.
+     */
     public String getRecurso() {
         return recurso;
     }
+    
     public void closeIn() throws IOException {
         this.in.close();
     }

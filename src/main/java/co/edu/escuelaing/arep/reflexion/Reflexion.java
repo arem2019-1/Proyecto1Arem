@@ -22,7 +22,13 @@ public class Reflexion {
     public Reflexion(){
     
     }
-    
+                /**
+     * Calcula el resultado por un pojo
+     * <p>Calcula el resultado segun el procedimiento que definio el usuario por el broswer</p>
+     * @param dato Es con el cual se realizara el calculo.
+     * @param ruta  Es con el cual sabremos que operacion se eligio.
+     * @return Integer
+     */
     public Integer tratar(Integer dato, String ruta) throws IOException {
         Hashtable<String, Object> dicWeb = new Hashtable<String, Object>();
         int resp=0;

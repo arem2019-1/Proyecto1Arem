@@ -10,7 +10,12 @@ package co.edu.escuelaing.arep.reflexion;
  * @author 2098325
  */
 public class Suma {
-
+            /**
+     * Calcula la suma de un numero 
+     * <p>Calcula la suma de un numero consigo mismo</p>
+     * @param al
+     * @return Integer
+     */
     @Web("/al")
     public static int su(int al) {
         int r=al+al;

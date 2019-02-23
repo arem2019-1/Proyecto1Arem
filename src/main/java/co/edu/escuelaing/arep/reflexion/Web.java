@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
  *
  * @author 2098325
  */
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Web {
